@@ -16,13 +16,17 @@ This is my first package written in *Mathematica*. This package provide a simple
 	Plot[Evaluate@Table[Sin[i x], {i, 1, 4}], {x, 0, 2 Pi}, 
 	 PlotStyle -> GetPalette[Set1, 4]]
 
-![ex1](./demo/ex1.svg)
+![ex1](./demo/ex1.png)
 
 	Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, 
 	 ColorFunction -> 
 	  Function[{x, y, z}, CreateColorFunction[RdYlBu, 5][z]]]
 
 ![ex2](./demo/ex2.png)
+
+You may also use `GetPalette` to check the color palette first, such as 
+
+![pal](./demo/pal.png)
 
 ## Feedback
 
