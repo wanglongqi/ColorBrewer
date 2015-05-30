@@ -16,7 +16,7 @@ This is my first package written in *Mathematica*. This package provide a simple
 	Plot[Evaluate@Table[Sin[i x], {i, 1, 4}], {x, 0, 2 Pi}, 
 	 PlotStyle -> GetPalette[Set1, 4]]
 
-![ex1](./demo/ex1.svg)
+![ex1](https://raw.githubusercontent.com/wanglongqi/ColorBrewer/master/demo/ex1.svg)
 
 	Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, 
 	 ColorFunction -> 
