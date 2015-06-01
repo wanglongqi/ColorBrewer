@@ -6,7 +6,7 @@
 (* :Title: ColroBrewer *)
 (* :Author: WANG Longqi <iqgnol@gmail.com> *)
 (* :Context: ColorBrewer` *)
-(* :Version: 0.1dev *)
+(* :Version: 0.2dev *)
 (* :Date: 2015-05-30 *)
 
 (* :Mathematica Version: 10 *)
@@ -350,6 +350,18 @@ Set3 = <|
     11-> {{141,211,199}, {255,255,179}, {190,186,218}, {251,128,114}, {128,177,211}, {253,180,98}, {179,222,105}, {252,205,229}, {217,217,217}, {188,128,189}, {204,235,197}},
     12-> {{141,211,199}, {255,255,179}, {190,186,218}, {251,128,114}, {128,177,211}, {253,180,98}, {179,222,105}, {252,205,229}, {217,217,217}, {188,128,189}, {204,235,197}, {255,237,111}}
 |>;
-CreateColorFunction[pal_,n_] := Blend[RGBColor @@@ (pal[n]/255),#]&;
-GetPalette[pal_,n_] := RGBColor @@@ (pal[n]/255)
+SequentialPalettes ={"Reds", "YlOrRd", "RdPu", "OrRd", "PuBu", "Greens", "GnBu", "BuPu", "Greys", "Oranges", "YlGnBu", "BuGn", "YlOrBr", "PuRd", "Blues", "PuBuGn", "YlGn", "Purples"}
+DivergingPalettes ={"Spectral", "RdYlGn", "PRGn", "RdBu", "RdGy", "RdYlBu", "PiYG", "PuOr", "BrBG"}
+QualitativePalettes = {"Pastel2", "Pastel1", "Dark2", "Accent", "Paired", "Set1", "Set2", "Set3"}
+
+CreateColorFunction[pal_,n_:3,reverse_:False] := 
+    If[reverse,Blend[RGBColor @@@ (pal[n]/255//Reverse),#]&,
+            Blend[RGBColor @@@ (pal[n]/255),#]&];
+
+GetPalette[pal_,n_:3,reverse_:False] := 
+    If[reverse,RGBColor @@@ (pal[n]/255//Reverse),
+            RGBColor @@@ (pal[n]/255)];
+
+DisplayPalettes[pallist_, n_:3] := Thread[List[pallist, 
+  GetPalette[ToExpression[#], n] & /@ pallist]]
 EndPackage[]
