@@ -6,8 +6,8 @@
 (* :Title: ColroBrewer *)
 (* :Author: WANG Longqi <iqgnol@gmail.com> *)
 (* :Context: ColorBrewer` *)
-(* :Version: 0.2dev *)
-(* :Date: 2015-05-30 *)
+(* :Version: 0.5 *)
+(* :Date: 2015-06-19 *)
 
 (* :Mathematica Version: 10 *)
 (* :Copyright: (c) 2015 WANG Longqi *)
@@ -354,6 +354,11 @@ SequentialPalettes ={"Reds", "YlOrRd", "RdPu", "OrRd", "PuBu", "Greens", "GnBu",
 DivergingPalettes ={"Spectral", "RdYlGn", "PRGn", "RdBu", "RdGy", "RdYlBu", "PiYG", "PuOr", "BrBG"}
 QualitativePalettes = {"Pastel2", "Pastel1", "Dark2", "Accent", "Paired", "Set1", "Set2", "Set3"}
 
+CreateColorFunction::usage = "CreateColorFunction[pal, n, reverse] create a ColorFunction from Colorbrewer palette."
+GetPalette::usage = "GetPalette[pal, n, reverse] get palette pal with n colors."
+DisplayPalettes::usage = "DisplayPalettes[pallist, n] display all palettes in pallist with n colors."
+
+Begin["`Private`"];
 CreateColorFunction[pal_,n_:3,reverse_:False] := 
     If[reverse,Blend[RGBColor @@@ (pal[n]/255//Reverse),#]&,
             Blend[RGBColor @@@ (pal[n]/255),#]&];
@@ -364,4 +369,6 @@ GetPalette[pal_,n_:3,reverse_:False] :=
 
 DisplayPalettes[pallist_, n_:3] := Thread[List[pallist, 
   GetPalette[ToExpression[#], n] & /@ pallist]]
+End[] (* End Private Context *)
+
 EndPackage[]
